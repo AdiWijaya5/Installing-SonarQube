@@ -230,7 +230,7 @@ stage('SonarQube Analysis') {
 ```
 
 
-
+### **Full Dokumentasi** https://www.sonarsource.com/products/sonarqube/
 
 
 
