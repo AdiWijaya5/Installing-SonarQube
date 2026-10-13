@@ -3,12 +3,12 @@
  **2 cara instal SonarQube** mengunakan manual docker images dan mengunakan asible autimation docker images
 
 ---
+ 
+### I. instal SonarQube mengunakan manual docker images
 
-## - instal SonarQube mengunakan manual docker images
+**1**. Buat File Docker Compose Khusus SonarQube
 
-### 1. Buat File Docker Compose Khusus SonarQube
-
-**Pastikan sudah instal Docker**
+  + **Pastikan sudah instal Docker**
 
 ```bash
 
@@ -16,7 +16,7 @@ mkdir -p ~/sonarqube-server && cd ~/sonarqube-server
 
 ```
 
-### 2. Lalu buat file docker-compose.yml di dalam folder tersebut:
+**2**. Lalu buat file docker-compose.yml di dalam folder tersebut:
 
 ```bash
 
@@ -24,7 +24,7 @@ vim docker-compose.yml
 
 ```
 
-### **konfigurasi lengkap** di bawah ini
+- **konfigurasi lengkap** di bawah ini
 
 ```yml
 
@@ -68,9 +68,9 @@ volumes:
 
 ---
 
-### 4. Lalu Atur Limit Sistem Linux & Nyalakan Server
+**3**. Lalu Atur Limit Sistem Linux & Nyalakan Server
 
-* pastikan pengaturan memori virtual host Linux sudah disesuaikan agar SonarQube tidak *crash*
+- pastikan pengaturan memori virtual host Linux sudah disesuaikan agar SonarQube tidak *crash*
 
 ```bash
 
@@ -79,7 +79,7 @@ sudo sysctl -w fs.file-max=131072
 
 ```
 
-* Lalu jalankan kontainernya
+- Lalu jalankan kontainernya
 
 ```bash
 
@@ -87,7 +87,7 @@ docker compose up -d
 
 ```
 
-### 5. Akses Dashboard SonarQube
+**4**. Akses Dashboard SonarQube
 
 1. Buka browser dan akses http://IP_SERVER:9000.
 2.  Login menggunakan akun default: Username: admin, Password: admin.
@@ -95,9 +95,9 @@ docker compose up -d
 
 ---
 
-## - instal SonarQube mengunakan asible autimation docker images
+### II. instal SonarQube mengunakan asible autimation docker images
 
-### 1. Buat Berkas Inventory (Inventory.ini)
+**1**. Buat Berkas Inventory (Inventory.ini)
 
 ```ini
 
@@ -112,7 +112,7 @@ ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 ```
 
-### 2. Install SonarQube Scanner mengunakan Ansible, Buat file (deploy-sonarqube.yaml)
+**2**. Install SonarQube Scanner mengunakan Ansible, Buat file (deploy-sonarqube.yaml)
 
 ```yaml
 
@@ -206,13 +206,15 @@ ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 ```
 
-### 3. Jalankan Playbook Ansible
+**3**. Jalankan Playbook Ansible
 
 ```bash
 
 ansible-playbook -i Inventory deploy-sonarqube.yml 
 
 ```
+
+---
 
 ### login SonarQube
 
