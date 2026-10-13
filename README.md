@@ -1,6 +1,6 @@
 # Installing-Server-SonarQube
 
- **2 cara instal SonarQube** mengunakan manual docker images dan mengunakan asible autimation docker images
+ **Cara instal SonarQube Wit Linux/ubuntu** mengunakan manual docker images dan mengunakan asible autimation docker images
 
 ---
  
