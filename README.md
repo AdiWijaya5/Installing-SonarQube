@@ -4,7 +4,7 @@
 
 ---
 
-### - instal SonarQube mengunakan manual docker images
+## - instal SonarQube mengunakan manual docker images
 
 ### 1. Buat File Docker Compose Khusus SonarQube
 
@@ -95,16 +95,31 @@ docker compose up -d
 
 ---
 
-### - instal SonarQube mengunakan asible autimation docker images
+## - instal SonarQube mengunakan asible autimation docker images
 
-### 1. Install SonarQube Scanner mengunakan Ansible
+### 1. Buat Berkas Inventory (Inventory.ini)
+
+```ini
+
+[sonarqube_servers]
+<server_ip>
+
+
+[all:vars]
+ansible_user=ubuntu
+ansible_port=22
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+```
+
+### 2. Install SonarQube Scanner mengunakan Ansible, Buat file (deploy-sonarqube.yaml)
 
 ```yaml
 
 
 ---
 - name: Setup and Run SonarQube 
-  hosts: <target_server>
+  hosts: sonarqube_servers
   become: true
   tasks:
     - name: Update apt cache
@@ -191,13 +206,20 @@ docker compose up -d
 
 ```
 
+### 3. Jalankan Playbook Ansible
 
-### 2. login SonarQube
+```bash
+
+ansible-playbook -i Inventory deploy-sonarqube.yml 
+
+```
+
+### login SonarQube
 
 ---
 <p align="center"><img width="1919" height="1040" alt="Screenshot 2026-10-07 024423" src="https://github.com/user-attachments/assets/1ca0d290-2d0b-4a4a-95c8-38ce4f73b334" /></p>
 
-### 3. Cara generate token SonarQube
+### Cara generate token SonarQube
 
 * Masuk ke Pengaturan Akun (My Account)
 * Buka Menu Security. pilih tab Security yang terletak di bagian atas atau samping daftar menu akun.
@@ -208,7 +230,7 @@ docker compose up -d
 
 <p align="center"><img width="1919" height="1041" alt="image" src="https://github.com/user-attachments/assets/fe6631df-8711-4701-9425-9ed46d93ff33" /></p>
 
-### 5. Pengunaan CI/CD di Jenkins
+### Pengunaan CI/CD di Jenkins
 
 
 ```yaml
